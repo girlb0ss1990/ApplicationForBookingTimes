@@ -1,4 +1,4 @@
-export type NavSection = "work" | "process" | "cognition" | "connect";
+export type NavSection = "start" | "work" | "cognition" | "connect";
 
 export interface Project {
   id: string;
@@ -12,6 +12,35 @@ export interface Project {
   year: string;
   status: "live" | "showcase" | "impact";
 }
+
+export const contact = {
+  email: "tumara.hall@gmail.com",
+  phone: "022 400 6030",
+  phoneHref: "tel:+64224006030",
+  address: "288 Conyers Street, Invercargill",
+  mapsHref:
+    "https://www.google.com/maps/search/?api=1&query=288+Conyers+Street+Invercargill",
+};
+
+export const bringItems = [
+  "Two degrees – Business Management + IT (Open Polytech)",
+  "Full-stack dev – Community Bridge Technologies",
+  "Logistics brain – Ran Sims Pacific Metals as sole-charge",
+  "AI enthusiast – Built custom assistive devices, resolved 74/77 Windows 11 upgrades",
+  "Real-world resilience – Forklift licensed, health & safety certified, comfortable under pressure",
+];
+
+export const techStack = [
+  "ASP.NET",
+  "C#",
+  "VB.NET",
+  "SQL Server",
+  "T-SQL",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "AI-assisted dev tools",
+];
 
 export const projects: Project[] = [
   {
@@ -56,22 +85,21 @@ export const projects: Project[] = [
 ];
 
 export const manifestoLines = [
-  "> init manifesto — Tumara Hall / Ngāti Whatua",
-  "> role: Software Developer · Founder · CB Tech Trust",
-  "> location: Southland, Aotearoa New Zealand",
+  "> init manifesto — Tumara Hall",
+  "> role: Software Developer | Invercargill, NZ",
   ">",
-  "> I build systems that respect people.",
-  "> Not dashboards for vanity — tools for dignity.",
-  "> ACC Sensitive Claims survivors. Whānau. Community.",
+  "> I build systems that actually work. In the real world.",
+  "> Industrial yards. Logistics. Assistive tech for families.",
+  "> I don't just write code — I solve problems people actually have.",
   ">",
-  "> Stack: C# · T-SQL · Next.js · Agentic AI",
-  "> Intent: meaningful applications with real-world impact.",
-  "> status: available for BookingTimes & mission-aligned builds",
+  "> looking for: features that matter",
+  "> scheduling · payments · integrations · AI-assisted development",
+  "> mode: own the problem from start to finish",
   "> _",
 ];
 
 export const stats = [
-  { label: "Years building", value: 6, suffix: "+" },
-  { label: "Projects shipped", value: 24, suffix: "" },
+  { label: "Degrees", value: 2, suffix: "" },
+  { label: "Win11 upgrades", value: 74, suffix: "/77" },
   { label: "Community focus", value: 100, suffix: "%" },
 ];

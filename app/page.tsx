@@ -21,15 +21,19 @@ import {
   Layers,
   Mail,
   MapPin,
+  Phone,
   Sparkles,
-  Workflow,
+  User,
   X,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import {
+  bringItems,
+  contact,
   manifestoLines,
   projects,
   stats,
+  techStack,
   type NavSection,
   type Project,
 } from '@/lib/portfolio';
@@ -38,17 +42,17 @@ const SECTION_META: Record<
   NavSection,
   { label: string; path: string; hue: string; icon: ReactNode }
 > = {
+  start: {
+    label: 'Start',
+    path: '/Start',
+    hue: '#00F0FF',
+    icon: <User className="h-4 w-4" />,
+  },
   work: {
     label: 'Work',
     path: '/Work',
-    hue: '#00F0FF',
-    icon: <Layers className="h-4 w-4" />,
-  },
-  process: {
-    label: 'Process',
-    path: '/Process',
     hue: '#B026FF',
-    icon: <Workflow className="h-4 w-4" />,
+    icon: <Layers className="h-4 w-4" />,
   },
   cognition: {
     label: 'Cognition',
@@ -575,7 +579,7 @@ function Carousel({ onSelect }: { onSelect: (p: Project) => void }) {
 }
 
 export default function Home() {
-  const [section, setSection] = useState<NavSection>('work');
+  const [section, setSection] = useState<NavSection>('start');
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [selected, setSelected] = useState<Project | null>(null);
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
@@ -645,34 +649,101 @@ export default function Home() {
         ))}
       </div>
 
-      {/* HERO / WORK */}
-      <section id="section-work" className="snap-section relative px-5 pb-24 pt-16 sm:px-10">
+      {/* START / INTRO */}
+      <section id="section-start" className="snap-section relative px-5 pb-20 pt-16 sm:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="font-mono text-xs uppercase tracking-[0.35em]" style={{ color: hue }}>
-            Tumara Hall · Ngāti Whatua · CB Tech Trust
+            {SECTION_META[section].path}
           </p>
-          <h1 className="mt-4 max-w-4xl font-display text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-7xl md:text-8xl">
-            Meaningful
-            <br />
-            <span className="text-gradient">applications.</span>
+          <h1 className="mt-4 font-display text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-7xl md:text-8xl">
+            Tumara Hall
           </h1>
-          <p className="mt-6 max-w-xl text-base text-[#aaaaaa] sm:text-lg">
-            Software Developer & Founder building systems for dignity — from ACC Sensitive Claims
-            survivors to Southland communities who need IT that actually helps.
+          <p className="mt-4 font-mono text-sm uppercase tracking-[0.2em] text-cyan-300 sm:text-base">
+            Software Developer | Invercargill, NZ
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-xs text-[#777]">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5 text-cyan-400" /> Southland, NZ
-            </span>
-            <span className="text-[#333]">/</span>
-            <span>Bauhaus × Cyberpunk</span>
-            <span className="text-[#333]">/</span>
-            <span style={{ color: hue }}>{SECTION_META[section].path}</span>
+          <p className="mt-8 max-w-2xl font-display text-2xl font-semibold leading-snug text-[#E8E8E8] sm:text-3xl">
+            I build systems that actually work.{' '}
+            <span className="text-gradient">In the real world.</span>
+          </p>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#aaaaaa] sm:text-lg">
+            I&apos;m a developer with a twist—I&apos;ve run industrial yards, managed logistics, and
+            built assistive tech for families. I don&apos;t just write code. I solve problems people
+            actually have.
+          </p>
+
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <div className="glass-sheet noise-overlay relative overflow-hidden p-6 sm:p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-300">
+                What I bring
+              </p>
+              <ul className="mt-5 space-y-3">
+                {bringItems.map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-3 border-l border-cyan-400/40 pl-4 text-sm leading-relaxed text-[#c8c8c8]"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-gradient-to-br from-[#00F0FF] to-[#B026FF]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <div className="glass-sheet noise-overlay relative overflow-hidden p-6 sm:p-8">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#B026FF]">
+                  I&apos;m looking for
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-[#c8c8c8]">
+                  A role where I can build features that matter. Scheduling. Payments. Integrations.
+                  AI-assisted development. I work best when I own the problem from start to finish.
+                </p>
+              </div>
+              <div className="glass-sheet noise-overlay relative overflow-hidden p-6 sm:p-8">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-300">
+                  Tech I roll with
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {techStack.map((t) => (
+                    <span
+                      key={t}
+                      className="border border-white/15 bg-black/50 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-[#E8E8E8]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <MagneticButton
+              onClick={() => {
+                document.getElementById('section-work')?.scrollIntoView({ behavior: 'smooth' });
+                setSection('work');
+              }}
+            >
+              View work
+            </MagneticButton>
+            <MagneticButton href={`mailto:${contact.email}`}>Email me</MagneticButton>
+          </div>
+        </div>
+      </section>
+
+      {/* WORK */}
+      <section id="section-work" className="snap-section relative px-5 pb-24 pt-16 sm:px-10">
+        <div className="mx-auto max-w-6xl">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#B026FF]">/Work</p>
+          <h2 className="mt-3 font-display text-4xl font-extrabold sm:text-6xl">
+            Active
+            <br />
+            <span className="text-gradient">cases.</span>
+          </h2>
 
           <div className="mt-14">
             <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-cyan-300/70">
-              Active cases — holodeck
+              Holodeck · project prisms
             </p>
             <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
               {projects.map((p, i) => (
@@ -694,14 +765,13 @@ export default function Home() {
             <Carousel onSelect={setSelected} />
           </div>
 
-          {/* Featured live MVP */}
           <div className="mt-24 glass-sheet noise-overlay relative overflow-hidden p-6 sm:p-8">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#B026FF]">
               Featured MVP · Charity impact
             </p>
-            <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            <h3 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
               On My Tikanga Terms
-            </h2>
+            </h3>
             <p className="mt-3 max-w-2xl text-[#bdbdbd]">
               Designed for ACC Sensitive Claims survivors. Built by CB Tech Charitable Trust because
               I like to make meaningful applications — not just demos.
@@ -711,41 +781,6 @@ export default function Home() {
                 Launch MVP <ExternalLink className="h-4 w-4" />
               </MagneticButton>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section id="section-process" className="snap-section relative px-5 py-24 sm:px-10">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B026FF]">/Process</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold sm:text-6xl">
-              Under the
-              <br />
-              <span className="text-gradient">hood.</span>
-            </h2>
-            <p className="mt-5 max-w-md text-[#aaaaaa]">
-              Backend-first discipline: ASP.NET Core, T-SQL with transactions & locks, agentic AI
-              with human-in-the-loop guards. Craft for systems that cannot afford to fail people.
-            </p>
-          </div>
-          <div className="space-y-4 font-mono text-[11px] leading-relaxed text-[#9ad]">
-            <pre className="overflow-x-auto border border-[#B026FF]/30 bg-black/70 p-4 text-[#cfc]">
-{`BEGIN TRAN;
--- conflict-safe reschedule
-UPDATE Appointments WITH (UPDLOCK, HOLDLOCK)
-SET StartTime = @NewStart
-WHERE Id = @Id;
-COMMIT;`}
-            </pre>
-            <pre className="overflow-x-auto border border-cyan-400/30 bg-black/70 p-4 text-[#cfc]">
-{`[HttpPut("{id}/reschedule")]
-public async Task<ActionResult> Reschedule(...)
-{
-  // validate · lock · mutate · audit
-}`}
-            </pre>
           </div>
         </div>
       </section>
@@ -792,30 +827,73 @@ public async Task<ActionResult> Reschedule(...)
 
       {/* CONNECT */}
       <section id="section-connect" className="snap-section relative px-5 py-24 sm:px-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B026FF]">/Connect</p>
-          <h2 className="mt-4 font-display text-5xl font-extrabold sm:text-7xl">
-            Build with
-            <br />
-            <span className="text-gradient">purpose.</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[#aaaaaa]">
-            Open to roles and collaborations where engineering meets community impact — including
-            BookingTimes-style scheduling platforms and mission-critical product work.
-          </p>
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B026FF]">/Connect</p>
+            <h2 className="mt-4 font-display text-5xl font-extrabold sm:text-7xl">
+              Let&apos;s
+              <br />
+              <span className="text-gradient">talk.</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-[#aaaaaa]">
+              Open to roles where I can own features end-to-end — scheduling, payments, integrations,
+              and AI-assisted development.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            <a
+              href={`mailto:${contact.email}`}
+              className="glass-sheet noise-overlay group relative overflow-hidden p-5 text-left transition-colors hover:border-cyan-300/50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Mail className="h-5 w-5 text-cyan-300" />
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[#666]">
+                Email
+              </p>
+              <p className="mt-1 break-all font-display text-sm font-semibold text-[#E8E8E8] group-hover:text-cyan-200">
+                {contact.email}
+              </p>
+            </a>
+            <a
+              href={contact.phoneHref}
+              className="glass-sheet noise-overlay group relative overflow-hidden p-5 text-left transition-colors hover:border-cyan-300/50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Phone className="h-5 w-5 text-[#B026FF]" />
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[#666]">
+                Phone
+              </p>
+              <p className="mt-1 font-display text-sm font-semibold text-[#E8E8E8] group-hover:text-cyan-200">
+                {contact.phone}
+              </p>
+            </a>
+            <a
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-sheet noise-overlay group relative overflow-hidden p-5 text-left transition-colors hover:border-cyan-300/50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <MapPin className="h-5 w-5 text-cyan-300" />
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[#666]">
+                Address
+              </p>
+              <p className="mt-1 font-display text-sm font-semibold text-[#E8E8E8] group-hover:text-cyan-200">
+                {contact.address}
+              </p>
+            </a>
+          </div>
+
           <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <MagneticButton href={`mailto:${contact.email}`}>Email Tumara</MagneticButton>
+            <MagneticButton href={contact.phoneHref}>Call now</MagneticButton>
             <MagneticButton href="https://on-my-tikanga-terms-7p68pl8s3-girlb0ss1990s-projects.vercel.app/">
               View ACC MVP
             </MagneticButton>
-            <MagneticButton href="https://www.techstep.nz/portfolio/tumara-hall-cb-tech-nz/">
-              TechStep profile
-            </MagneticButton>
-            <MagneticButton href="https://www.odt.co.nz/news/southland/big-need-for-it-help-qpzd3soc">
-              ODT feature
-            </MagneticButton>
           </div>
-          <p className="mt-16 font-mono text-[10px] uppercase tracking-[0.25em] text-[#555]">
-            © {new Date().getFullYear()} Tumara Hall · CB Tech Charitable Trust · Southland NZ
+          <p className="mt-16 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-[#555]">
+            © {new Date().getFullYear()} Tumara Hall · CB Tech Charitable Trust · Invercargill NZ
           </p>
         </div>
       </section>
