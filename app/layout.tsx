@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Tumara Hall | BookingTimes Interactive Sandbox & Portfolio",
-  description: "Interactive portfolio demonstrating scheduling systems, AI integration, and backend engineering expertise for BookingTimes application.",
-  authors: [{ name: "Tumara Hall", url: "https://www.techstep.nz/portfolio/tumara-hall-cb-tech-nz/" }],
-  keywords: ["Software Developer", "BookingTimes", "Scheduling", "AI", "C#", "T-SQL", "Next.js", "Southland NZ"],
+  title: "Tumara Hall | Software Developer & Founder — CB Tech Trust",
+  description:
+    "Portfolio of Tumara Hall — full-stack developer and founder of CB Tech Charitable Trust. Meaningful applications for Southland, NZ, including ACC Sensitive Claims support.",
+  authors: [
+    {
+      name: "Tumara Hall",
+      url: "https://www.techstep.nz/portfolio/tumara-hall-cb-tech-nz/",
+    },
+  ],
+  keywords: [
+    "Tumara Hall",
+    "CB Tech Trust",
+    "Software Developer",
+    "Southland NZ",
+    "ACC Sensitive Claims",
+    "Full Stack",
+    "Portfolio",
+  ],
 };
 
 export default function RootLayout({
@@ -18,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
